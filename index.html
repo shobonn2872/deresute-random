@@ -25,6 +25,11 @@
   <button onclick="pickRandom(10)">ランダムで10曲</button>
   <button onclick="pickRandom(30)">ランダムで30曲</button>
   <button onclick="pickRandom(50)">ランダムで50曲</button>
+  <div style="margin-top: 1em;">
+  <input type="number" id="customCount" min="1" placeholder="好きな数を入力" style="padding: 0.5em; font-size: 16px; width: 160px;">
+  <button onclick="pickCustom()">この数でランダム選曲</button>
+</div>
+
   <div class="result" id="result">選曲結果がここに表示されます</div>
   <script>
     const songs = ["お願い!シンデレラ",
@@ -239,6 +244,7 @@
   "禍魂朧夜",
   "Morgana",
   "オトメゴコロ更新中",
+  "熱情エナモラル",
   "S(mile)ING!",
   "Never say never",
   "ミツボシ☆☆★",
@@ -537,6 +543,22 @@
       }
       document.getElementById("result").textContent = selected.join("\n");
     }
+    function pickCustom() {
+  const input = document.getElementById("customCount").value;
+  let count = parseInt(input, 10);
+
+  if (isNaN(count) || count < 1) {
+    alert("1以上の数字を入力してください");
+    return;
+  }
+
+  if (count > songs.length) {
+    count = songs.length; // 最大数に調整
+  }
+
+  pickRandom(count);
+}
+
   </script>
 </body>
 </html>
